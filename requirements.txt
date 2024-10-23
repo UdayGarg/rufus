@@ -1,6 +1,9 @@
 requests
+json
+logging
 beautifulsoup4
-playwright
 openai
-tqdm
 urllib3
+langchain
+langchain-openai
+langchain-community
