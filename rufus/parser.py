@@ -61,7 +61,8 @@ class InstructionParser:
                 model="gpt-4o",
                 messages=[
                     {"role": "system",
-                     "content": "Extract the keywords from the user's instructions."},
+                     "content": "Your task is to extract only the most relevant keywords from the user's \
+                        provided instructions. Return the keywords as a comma-separated list without additional text or explanations."},
                     {"role": "user",
                      "content": instructions}
                 ],
@@ -93,10 +94,12 @@ class InstructionParser:
                     model="gpt-4o",
                     messages=[
                         {"role": "system",
-                         "content": "Assess if the provided content is relevant to the given keywords. You can be lenient in allowing content."},
+                         "content": "Your task is to determine whether the provided content is relevant to the \
+                            given keywords. Be flexible in your assessment, allowing content that fits \
+                                the context"},
                         {"role": "user",
-                         "content": prompt}
-                    ],
+                            "content": prompt}
+                        ],
                     max_tokens = self.max_relevant_token,
                     temperature = self.temp,
                 )
