@@ -23,13 +23,14 @@ The repository is organized into several key components:
 
 ```
 .
-├── README.md               # This file
+├── README.md               
 ├── demo.py                 # Demo script to showcase Rufus in action
-├── logs/                   # Logs directory for client, crawler, and parser logs
+├── demo_RAG.py             # RAG pipeline demo
+├── logs/                   # Debug
 │   ├── rufus.client.log
 │   ├── rufus.crawler.log
 │   └── rufus.parser.log
-├── requirements.txt        # Python dependencies
+├── requirements.txt        
 ├── rufus/                  # Rufus package
 │   ├── __init__.py
 │   ├── client.py           # RufusClient class (main entry point)
@@ -55,6 +56,8 @@ The repository is organized into several key components:
    ```bash
    pip install -r requirements.txt
    ```
+
+> Note: requires OPENAI_API_KEY to be set in the env. This is used for token extraction and relevancy filtering.
 
 ---
 
@@ -146,7 +149,61 @@ Rufus is capable of handling deeply nested links up to a configurable depth, ens
 1. **Support for JavaScript-rendered Content**: Adding support for JavaScript execution to handle dynamic content and single-page applications.
 2. **Customizable Link Filtering**: Allow users to specify custom rules for link crawling (e.g., filtering out specific domains or link patterns).
 3. **Better Error Handling for Specific Domains**: Implement specific error handling mechanisms for common website structures like captchas or login-required pages.
+4. **Update crawler to use asyncio**
+5. **Add tooling for ollama for local tokenization and relevancy filtering**
 
 ---
 
-Thank you for using Rufus!
+## RAG Workflow
+
+**Rufus** can be easily integrated into a Retrieval-Augmented Generation (RAG) pipeline by leveraging its ability to crawl and extract structured data from web pages.
+
+### Steps for RAG Workflow:
+
+1. **Data Extraction**: Rufus crawls a webpage and extracts relevant content, which is structured and processed into text chunks.
+2. **Embedding Generation**: The extracted text chunks are converted into vector embeddings using OpenAI's embedding models (or any other model of choice).
+3. **Vector Store**: The embeddings are stored in a FAISS vector store, allowing for fast similarity searches during the retrieval step.
+4. **Question Answering**: When a query is posed, relevant documents are retrieved from the FAISS vector store based on their embeddings' similarity to the query. 
+5. **Response Generation**: Using an LLM (e.g., GPT-4 or ChatOpenAI), the system generates a response by combining the retrieved documents and answering the user's query.
+
+### Code Example for RAG Workflow:
+
+```python
+import os
+from rufus import RufusClient
+from langchain_openai import OpenAIEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain.text_splitter import TokenTextSplitter
+from langchain_openai import ChatOpenAI
+from langchain.chains import RetrievalQA
+
+# Initialize Rufus client
+client = RufusClient(api_key=os.getenv('OPENAI_API_KEY'))
+
+# Step 1: Rufus Crawling
+url = "https://www.example.com"
+documents = client.scrape(url=url, instructions="Find relevant information", max_depth=2)
+
+# Step 2: Text Splitting
+combined_text = "
+".join([doc['content'] for doc in documents])
+text_splitter = TokenTextSplitter(chunk_size=300, chunk_overlap=50)
+texts = text_splitter.split_text(combined_text)
+
+# Step 3: Embeddings and Vector Store
+embeddings = OpenAIEmbeddings()
+faiss_store = FAISS.from_texts(texts, embeddings)
+
+# Step 4: RetrievalQA
+llm = ChatOpenAI(temperature=0)
+retriever = faiss_store.as_retriever()
+qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever)
+
+# Step 5: Querying the system
+query = "What are the main features of the product?"
+result = qa_chain.invoke({"query": query})
+print("Answer:", result['result'])
+```
+
+This demonstrates how Rufus can be part of an end-to-end RAG pipeline, integrating web crawling, document retrieval, and LLM-based question-answering.
+

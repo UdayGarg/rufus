@@ -1,10 +1,5 @@
 [
   {
-    "url": "https://www.bu.edu/cs/masters/program/",
-    "title": "Master’s Academic Programs | Computer Science",
-    "content": []
-  },
-  {
     "url": "https://www.bu.edu/cs/",
     "title": "Boston University Department of Computer Science | Computer Science",
     "content": [
@@ -15,22 +10,6 @@
       "September 30, 2024",
       "May 21, 2024",
       "March 15, 2024"
-    ]
-  },
-  {
-    "url": "https://www.bu.edu/cs/undergraduate/",
-    "title": "BA | Boston University Department of Computer Science | Computer Science",
-    "content": [
-      "Explore Programs",
-      "Choosing an education in computer science can give you real power to effect change in the world. It can also be a smart career move: opportunities are excellent, thanks to the continuing revolution in computer technology and applications. Our graduates find rewarding careers in the financial, medical, education, gaming, media, and entertainment sectors, as well as in the software and hardware industries. aybe you’ll design a killer app or build a revolutionary technology company. You might design a groundbreaking algorithmic trading platform, new software that helps people with disabilities use computers, or software and hardware to support fully autonomous vehicles",
-      "Boston University’s Department of Computer Science offers several programs in computer science to cater students will varying degrees of interest and specializations.",
-      "If you’re interested in Computer Science but don’t intend to pursue a CS major or minor, the department offers several introductory courses with no prerequisites. These introductory courses count towardseveral Hub areas.",
-      "In you are interested in declaring a major in computer science, contact us atcsadvise@bu.edu. For specific issues and questions, please make an appointment with your academic advisor.",
-      "Undergraduate Academic Advisor",
-      "Senior Lecturer & Director of Undergraduate Studies",
-      "Academic Programs Manager",
-      "Undergraduate Academic Advisor",
-      "All undergraduate admissions are handled by theUndergraduate Admissionsdivision. Please contact their office for information and inquiries regarding application materials for undergraduate admissions and financial aid. If you plan to major in Computer Science, you should apply to the College of Arts & Sciences, where our department is housed."
     ]
   },
   {
@@ -125,6 +104,22 @@
       "",
       "Topics Courses",
       "Transfer Courses"
+    ]
+  },
+  {
+    "url": "https://www.bu.edu/cs/undergraduate/",
+    "title": "BA | Boston University Department of Computer Science | Computer Science",
+    "content": [
+      "Explore Programs",
+      "Choosing an education in computer science can give you real power to effect change in the world. It can also be a smart career move: opportunities are excellent, thanks to the continuing revolution in computer technology and applications. Our graduates find rewarding careers in the financial, medical, education, gaming, media, and entertainment sectors, as well as in the software and hardware industries. aybe you’ll design a killer app or build a revolutionary technology company. You might design a groundbreaking algorithmic trading platform, new software that helps people with disabilities use computers, or software and hardware to support fully autonomous vehicles",
+      "Boston University’s Department of Computer Science offers several programs in computer science to cater students will varying degrees of interest and specializations.",
+      "If you’re interested in Computer Science but don’t intend to pursue a CS major or minor, the department offers several introductory courses with no prerequisites. These introductory courses count towardseveral Hub areas.",
+      "In you are interested in declaring a major in computer science, contact us atcsadvise@bu.edu. For specific issues and questions, please make an appointment with your academic advisor.",
+      "Undergraduate Academic Advisor",
+      "Senior Lecturer & Director of Undergraduate Studies",
+      "Academic Programs Manager",
+      "Undergraduate Academic Advisor",
+      "All undergraduate admissions are handled by theUndergraduate Admissionsdivision. Please contact their office for information and inquiries regarding application materials for undergraduate admissions and financial aid. If you plan to major in Computer Science, you should apply to the College of Arts & Sciences, where our department is housed."
     ]
   },
   {
