@@ -26,31 +26,11 @@ import requests
 from urllib.parse import urljoin, urlparse
 from bs4 import BeautifulSoup
 import time
-import logging
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from .logging_config import get_logger
 
-# Ensure the logs directory exists
-LOG_DIR = "logs"
-if not os.path.exists(LOG_DIR):
-    os.makedirs(LOG_DIR)
-
-logger = logging.getLogger(__name__)  # Create a logger for this module
-logger.setLevel(logging.DEBUG)  # Set the logging level
-
-# Create handlers
-console_handler = logging.StreamHandler()  # Console output
-console_handler.setLevel(logging.INFO)  # Set handler level
-file_handler = logging.FileHandler(os.path.join(LOG_DIR, 'crawler.log'))  # Log to file
-file_handler.setLevel(logging.DEBUG)  # Set handler level for file logging
-
-# Create a formatter and add it to handlers
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-console_handler.setFormatter(formatter)
-file_handler.setFormatter(formatter)
-
-# Add handlers to the logger
-logger.addHandler(console_handler)
-logger.addHandler(file_handler)
+# Get a logger for the current module
+logger = get_logger(__name__)
 
 class Crawler:
     """
